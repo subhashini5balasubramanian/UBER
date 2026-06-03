@@ -1,31 +1,18 @@
-````md
-# Uber Ride Analytics Dashboard | Power BI Project
+# Uber Ride Analytics Dashboard
 
 ## Project Overview
 
-This project presents a comprehensive Power BI dashboard developed to analyze Uber ride-booking operations, revenue performance, customer behavior, and operational efficiency using real-world ride data.
-
-The dashboard transforms raw transactional ride data into meaningful business insights that help identify operational bottlenecks, revenue leakage, customer satisfaction trends, and vehicle performance metrics.
-
-This project demonstrates practical applications of:
-- Business Intelligence
-- Data Cleaning
-- Data Modeling
-- DAX Calculations
-- Interactive Dashboard Development
+This project is an interactive Power BI dashboard developed to analyze Uber ride-booking operations and business performance using real-world ride data. The dashboard provides insights into booking trends, revenue generation, ride cancellations, customer satisfaction, driver performance, and vehicle utilization.
 
 ## Business Problem
+Ride-booking companies process thousands of rides daily. Managing these operations efficiently becomes challenging due to:
 
-Ride-booking companies process thousands of ride transactions daily. Managing these operations efficiently becomes challenging due to:
-
-- High ride cancellation rates
-- Incomplete bookings
-- Revenue loss from failed rides
-- Driver performance monitoring
-- Customer satisfaction management
-- Vehicle utilization imbalance
-
-This dashboard helps businesses monitor operational performance and make data-driven decisions to improve efficiency, customer experience, and profitability.
+* High ride cancellation rates
+* Incomplete bookings
+* Revenue loss from failed rides
+* Customer dissatisfaction
+* Driver performance monitoring
+* Vehicle utilization imbalance
 
 ## Dashboard KPIs
 
@@ -41,98 +28,16 @@ This dashboard helps businesses monitor operational performance and make data-dr
 
 ## Data Cleaning & Transformation (Power Query)
 
-The raw dataset was cleaned and transformed using Power Query to ensure data quality and accurate reporting.
+The raw dataset was cleaned and transformed using Power Query before building the dashboard.
 
-### Removed Unnecessary Columns
+### Data Cleaning Steps
 
-Removed:
-- Unwanted time columns
-- Temporary attributes
-- Irrelevant fields
+* Removed unnecessary columns
+* Corrected incorrect data types
+* Removed duplicate records
+* Handled missing and null values
+* Applied proper column formatting
 
-#### Purpose
-- Improves dashboard performance
-- Reduces memory consumption
-- Simplifies analysis
-
-### Corrected Data Types
-
-| Column Name | Data Type |
-|------|------|
-| Date | Date |
-| Booking ID | Text |
-| Customer ID | Text |
-| Booking Value | Decimal Number |
-| Ride Distance | Whole Number |
-| Ratings | Decimal Number |
-
-#### Purpose
-- Enables accurate calculations
-- Supports filtering and grouping
-- Improves DAX performance
-
-### Removed Duplicate Records
-
-Duplicate rows were identified and removed using Power Query.
-
-#### Purpose
-- Prevents incorrect revenue calculations
-- Avoids duplicate booking counts
-- Ensures reliable KPIs
-
-### Handling Missing Values
-
-Handled null and blank values in:
-- Ratings
-- Cancellation reasons
-- Incomplete ride reasons
-
-#### Techniques Used
-- Replaced null values with:
-  - "Unknown"
-  - "Not Available"
-- Removed unnecessary blank rows
-
-#### Purpose
-- Improves reporting consistency
-- Prevents visualization errors
-- Maintains data integrity
-
-### Column Formatting
-
-Applied formatting to:
-- Revenue columns
-- Ratings
-- Dates
-- Text fields
-
-#### Purpose
-- Enhances dashboard readability
-- Improves user experience
-- Creates professional visual reports
-
-## Data Modeling
-
-A structured Star Schema model was implemented to improve analytical performance and dashboard scalability.
-
-### Fact Table
-- Ride Booking Data
-
-### Dimension Tables
-- Date Table
-- Vehicle Type Table
-- Payment Method Table
-- Location Table
-
-### Relationships Used
-- One-to-Many Relationships
-- Primary Key & Foreign Key Relationships
-
-### Benefits of Data Modeling
-- Faster report performance
-- Accurate DAX calculations
-- Better filtering capability
-- Scalable dashboard architecture
 
 ## DAX Measures Used
 
@@ -141,8 +46,6 @@ A structured Star Schema model was implemented to improve analytical performance
 ```DAX
 Total Revenue = SUM('Uber Data'[Booking Value])
 ````
-
-Calculates total revenue generated from ride bookings.
 
 ### Completed Bookings
 
@@ -154,8 +57,6 @@ CALCULATE(
 )
 ```
 
-Counts successfully completed rides.
-
 ### Lost Bookings
 
 ```DAX
@@ -166,16 +67,12 @@ CALCULATE(
 )
 ```
 
-Tracks cancelled and incomplete bookings.
-
 ### Average Driver Rating
 
 ```DAX
 Average Driver Rating =
 AVERAGE('Uber Data'[Driver Ratings])
 ```
-
-Measures overall driver performance.
 
 ### Average Customer Rating
 
@@ -184,8 +81,6 @@ Average Customer Rating =
 AVERAGE('Uber Data'[Customer Rating])
 ```
 
-Measures customer satisfaction.
-
 ### Total Distance
 
 ```DAX
@@ -193,61 +88,15 @@ Total Distance =
 SUM('Uber Data'[Ride Distance])
 ```
 
-Calculates total ride distance covered.
-
-### Average Ride Distance
-
-```DAX
-Average Distance =
-AVERAGE('Uber Data'[Ride Distance])
-```
-
-Calculates average ride distance per booking.
-
 ## Dashboard Features
 
-### KPI Overview
-
-Displays:
-
-* Completed Bookings
-* Lost Bookings
-* Total Revenue
-* Total Distance
-* Average Ride Distance
-
-### Revenue Analysis
-
-Analyzes:
-
-* Monthly revenue trends
-* Revenue by vehicle type
-
-### Booking Status Analysis
-
-Tracks:
-
-* Completed rides
-* Cancelled rides
-* Incomplete rides
-
-### Vehicle Performance Analysis
-
-Compares:
-
-* Auto
-* Bike
-* Go Mini
-* Go Sedan
-* Premier Sedan
-* Uber XL
-
-### Customer & Driver Rating Analysis
-
-Monitors:
-
-* Driver performance
-* Customer satisfaction
+* KPI Overview
+* Revenue Analysis
+* Booking Status Analysis
+* Vehicle Performance Analysis
+* Customer & Driver Rating Analysis
+* Monthly Revenue Trends
+* Revenue by Vehicle Type
 
 ## Tools & Technologies Used
 
@@ -256,7 +105,6 @@ Monitors:
 * DAX
 * Data Modeling
 * Data Visualization
-* SQL
 
 ## Dataset Information
 
@@ -264,19 +112,18 @@ The dataset contains:
 
 * Booking ID
 * Booking Status
-* Pickup Location
-* Drop Location
+* Pickup & Drop Location
 * Vehicle Type
 * Ride Distance
 * Booking Value
 * Payment Method
 * Customer Ratings
 * Driver Ratings
-* Cancellation Reasons
+* Cancellation Details
 
 ## Business Impact
 
-This dashboard helps ride-booking businesses to:
+This dashboard helps businesses:
 
 * Reduce ride cancellations
 * Improve operational efficiency
@@ -284,54 +131,22 @@ This dashboard helps ride-booking businesses to:
 * Optimize vehicle allocation
 * Improve customer satisfaction
 * Monitor driver performance
-* Support strategic decision-making
-
-## Dashboard Preview
-
-### Home Dashboard
-
-(Add Screenshot Here)
-
-### Overview Dashboard
-
-(Add Screenshot Here)
-
-## Project Structure
-
-```text
-Uber-Ride-Analytics-Dashboard
-│
-├── Uber Dashboard.pbix
-├── Uber Dataset.csv
-├── Dashboard Screenshots
-└── README.md
-```
+* Support data-driven business decisions
 
 ## Future Improvements
 
 * Real-time dashboard integration
 * Predictive ride demand forecasting
-* Geospatial route analysis
+* Geospatial analysis
 * AI-based cancellation prediction
-* Customer segmentation analytics
 
-## Author
+## Dashboard Overview
 
-Subha Shini
+<video src="https://github.com/user-attachments/assets/ed41dcc2-84f5-4688-9e34-8605c67b3a59" controls width="800"></video>
 
-Aspiring Data Analyst | Power BI Developer | SQL Enthusiast
-
-### Skills
-
-* Power BI
-* SQL
-* Python
-* Data Analytics
-* Dashboard Development
 
 ## Conclusion
 
-This project demonstrates how Power BI can transform raw ride-booking data into meaningful business insights. The dashboard helps analyze operational efficiency, revenue trends, customer satisfaction, and ride performance, enabling smarter and data-driven business decisions.
+This project demonstrates how Power BI and frontend technologies can transform raw ride-booking data into meaningful business insights and interactive reporting solutions for operational and business analysis.
 
-```
-```
+
